@@ -15,10 +15,11 @@
 
     <!-- CSS File  -->
     <link rel="stylesheet" href="styles/style.css" />
+
   </head>
-  <body class="w-[1920px]">
+  <body class=" lg:w-[1920px]">
     <header class="max-h-[100px] ">
-      <div class="navbar bg-[#15813C] shadow-sm px-[135px] text-white">
+      <div class="navbar bg-[#15813C] shadow-sm px-5 md:px-[135px] text-white">
         <div class="navbar-start">
           <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
@@ -50,7 +51,7 @@
               </ul>
             </ul>
           </div>
-          <a class="text-2xl font-semibold cursor-pointer" href="#">Green Earth</a>
+          <a class="text-lg md:text-2xl font-semibold cursor-pointer" href="#">Green Earth</a>
         </div>
         <div class="navbar-center hidden lg:flex">
           <ul class="menu menu-horizontal px-1">
@@ -64,6 +65,23 @@
         </div>
       </div>
     </header>
+
+    <section class="hero bg-[#cef0dd] md:h-[383px] " id="hero">
+      <div class="hero mx-auto flex flex-col md:flex-row justify-around p-10 md:p-0 space-y-5">
+        <div><img src="assets/hero-leaf1.png" alt=""></div>
+        <div class="flex flex-col justify-center items-center gap-5 ">
+          <h1 class="font-bold text-5xl text-center">Plant a Tree, Grow a Future</h1>
+          <p class="text-center text-xl ">Join our mission to plant 1 million trees and make the Earth greener for future<br class="hidden md:block">
+          generations.</p>
+            <a class="btn bg-[#fbcd15] text-[#15813c] rounded-4xl border-none hover:bg-white hover:text-black">Get Involved</a>
+        </div>
+        <div><img src="assets/hero-leaf2.png" alt=""></div>
+      </div>
+    </section>
+
+
+
+    
     <script src="./script/index.js"></script>
   </body>
 </html>
