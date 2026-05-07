@@ -16,8 +16,54 @@
     <!-- CSS File  -->
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body>
-    
+  <body class="w-[1920px]">
+    <header class="max-h-[100px] ">
+      <div class="navbar bg-[#15813C] shadow-sm px-[135px] text-white">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="-1"
+              class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            >
+              <ul class="menu menu-horizontal px-1 text-green-900 flex flex-col ">
+                <li><a href="#about" class="text-base hover:border-b hover:border-green-900">About</a></li>
+                <li><a href="#gallery" class="text-base hover:border-b hover:border-green-900">Gallery</a></li>
+                <li>
+                  <a href="#plant-tree" class="text-base hover:border-b hover:border-green-900">Plant a Tree</a>
+                </li>
+              </ul>
+            </ul>
+          </div>
+          <a class="text-2xl font-semibold cursor-pointer" href="#">Green Earth</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a href="#about" class="text-base">About</a></li>
+            <li><a href="#gallery" class="text-base">Gallery</a></li>
+            <li><a href="#plant-tree" class="text-base">Plant a Tree</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end cursor-pointer">
+          <a class="btn bg-[#fbcd15] text-[#15813c] rounded-4xl border-none hover:bg-white hover:text-black">Plant a Tree</a>
+        </div>
+      </div>
+    </header>
     <script src="./script/index.js"></script>
   </body>
 </html>
