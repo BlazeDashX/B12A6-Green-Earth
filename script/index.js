@@ -6,7 +6,7 @@ const plantDetailsUrl = "https://openapi.programming-hero.com/api/plant/${id}";
 const loadCategories = () => {
     fetch(categoryUrl)
         .then((res) => res.json())
-        .then((json) => displayCategories(json.categories));
+        .then((data) => displayCategories(data.categories));
 };
 
 const displayCategories = (categories) => {
@@ -18,6 +18,14 @@ const displayCategories = (categories) => {
     allCategory.innerHTML = `
         <a href="#" class="active">All</a>
     `;
+
+    const allCategoryBtn = allCategory.querySelector("a");
+
+    allCategoryBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        setActive(this);
+    });
+
     categoryList.append(allCategory);
 
     categories.forEach((category) => {
@@ -29,8 +37,25 @@ const displayCategories = (categories) => {
             </a>
         `;
 
+        const catBtn = li.querySelector("a");
+
+        catBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            setActive(this);
+        });
+
         categoryList.append(li);
     });
+};
+
+const setActive = (clickedBtn) => {
+    const buttons = document.querySelectorAll("#category-list a");
+
+    buttons.forEach((btn) => {
+        btn.classList.remove("active");
+    });
+
+    clickedBtn.classList.add("active");
 };
 
 loadCategories();
