@@ -1,7 +1,7 @@
 const categoryUrl = "https://openapi.programming-hero.com/api/categories";
 const allPlantUrl = "https://openapi.programming-hero.com/api/plants";
-const plantByCategoryUrl = "https://openapi.programming-hero.com/api/category/${id}";
-const plantDetailsUrl = "https://openapi.programming-hero.com/api/plant/${id}";
+// const plantByCategoryUrl = `https://openapi.programming-hero.com/api/category/${id}`;
+// const plantDetailsUrl = `https://openapi.programming-hero.com/api/plant/${id}`;
 
 const loadCategories = () => {
     fetch(categoryUrl)

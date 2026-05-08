@@ -13,10 +13,18 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 
+    <!-- Custom Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- CSS File  -->
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body class="lg:w-[1920px]">
+  <body class="lg:w-[1920px] font-inter">
     <header class="max-h-[100px]">
       <div class="navbar bg-[#15813C] shadow-sm px-5 md:px-[135px] text-white">
         <div class="navbar-start">
@@ -116,14 +124,52 @@
         <h2 class="font-semibold text-3xl text-center pb-5">
           Choose Your Trees
         </h2>
-        <div class="flex gap-12">
-          
-          <div class="categories">
+        <div class="grid grid-cols-14 gap-6">
+          <div class="categories col-span-2">
             <h2 class="text-lg font-bold">Categories</h2>
             <ul id="category-list" class="menu rounded-box w-56 space-y-2"></ul>
           </div>
-          
-          <div class="cart"></div>
+
+          <div id="plant-cards" class="cards col-span-9 h-full">
+            <div class="cards grid grid-cols-3 gap-4">
+              <div class="card bg-base-100 shadow-sm w-full">
+                <figure>
+                  <img
+                    class="w-[298px] pt-5"
+                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    alt="Shoes"
+                  />
+                </figure>
+                <div class="p-4 space-y-3">
+                  <h2 class="card-title font-semibold text-sm">Mango Tree</h2>
+                  <p class="text-xs text-[#1F2937] text-justify">
+                    A fast-growing tropical tree that produces delicious, juicy
+                    mangoes during summer. Its dense green
+                  </p>
+                  <div class="card-actions justify-between">
+                    <div
+                      class="bg-[#ddfde7] text-green-700 rounded-3xl border-none"
+                    >
+                      <p class="py-.5 px-2.5">Fruit Tree</p>
+                    </div>
+                    <div class="font-semibold text-base"><p>৳500</p></div>
+                  </div>
+                  <button
+                    class="bg-[#15813c] text-white rounded-3xl border-none hover:bg-white hover:text-black cursor-pointer w-full p-2"
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cart col-span-3 bg-white rounded-xl p-4">
+            <div class="cart bg-base-100 rounded-xl p-4">
+              <h2 class="font-bold text-lg mb-4">Your Cart</h2>
+
+              <!-- cart items -->
+            </div>
+          </div>
         </div>
       </div>
     </section>
