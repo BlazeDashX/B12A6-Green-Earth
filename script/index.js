@@ -218,4 +218,4 @@ const removeFromCart = (id) => {
 };
 
 loadCategories();
-loadPlants();
+// loadPlants();
