@@ -83,8 +83,8 @@ const displayPlants = (plants) => {
 
     const cardContainer = document.createElement("div");
 
-    cardContainer.className = "grid grid-cols-3 gap-4";
-
+    cardContainer.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4";
+    
     plants.forEach((plant) => {
         const card = document.createElement("div");
 
@@ -161,51 +161,65 @@ const addToCart = (plant) => {
 };
 
 const renderCart = () => {
-    const cartContainer = document.querySelector(".cart .space-y-4");
+    const cartContainer = document.querySelector("#cart");
 
     cartContainer.innerHTML = `
         <h2 class="font-bold text-xl">Your Cart</h2>
     `;
 
+    if (cart.length === 0) {
+        cartContainer.innerHTML += `
+            <div class="text-center py-10 text-gray-500">
+                <p class="text-lg font-semibold">Your cart is empty</p>
+                <p class="text-sm mt-2">Add plants to see them here</p>
+            </div>
+        `;
+        return;
+    }
+
     let total = 0;
 
-cart.forEach((item, index) => {
-    total += item.price * item.quantity;
+    cart.forEach((item) => {
+        total += item.price * item.quantity;
 
-    const div = document.createElement("div");
+        const div = document.createElement("div");
 
-    div.className =
-        "flex items-center justify-between rounded-2xl bg-[#f1fcf4] px-5 py-4";
+        div.className =
+            "flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-0 rounded-2xl bg-[#f1fcf4] px-4 py-3 sm:px-5 sm:py-4";
 
-    div.innerHTML = `
-        <div>
-            <h3 class="text-lg font-semibold text-gray-800">
-                ${item.name}
-            </h3>
+        div.innerHTML = `
+            <div class="w-full sm:w-auto">
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+                    ${item.name}
+                </h3>
 
-            <p class="mt-2 text-lg text-gray-500">
-                ৳${item.price} × ${item.quantity}
-            </p>
-        </div>
+                <p class="mt-1 sm:mt-2 text-sm sm:text-lg text-gray-500">
+                    ৳${item.price} × ${item.quantity}
+                </p>
+            </div>
 
-        <button onclick="removeFromCart(${item.id})"
-            class="text-3xl text-gray-500 hover:text-red-500">
-            ×
-        </button>
-    `;
+            <button onclick="removeFromCart(${item.id})"
+                class="self-end sm:self-auto text-2xl sm:text-3xl text-gray-500 hover:text-red-500 transition">
+                ×
+            </button>
+        `;
 
-    cartContainer.appendChild(div);
-});
+        cartContainer.appendChild(div);
+    });
 
-    // Total section
     const totalDiv = document.createElement("div");
 
     totalDiv.innerHTML = `
-        <div class="border-t border-gray-300"></div>
+        <div class="border-t border-gray-300 mt-3"></div>
 
         <div class="flex items-center justify-between mt-4">
-            <h2 class="text-lg font-semibold text-gray-800">Total:</h2>
-            <p class="text-lg font-semibold text-gray-800">৳${total}</p>
+            <h2 class="text-base sm:text-lg font-semibold text-gray-800">
+                Total:
+            </h2>
+
+            <p class="text-base sm:text-lg font-semibold text-gray-800">
+                ৳${total}
+            </p>
         </div>
     `;
 
@@ -218,4 +232,5 @@ const removeFromCart = (id) => {
 };
 
 loadCategories();
-// loadPlants();
+loadPlants();
+renderCart();
