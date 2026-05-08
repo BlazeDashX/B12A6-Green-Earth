@@ -2,7 +2,10 @@ const categoryUrl = "https://openapi.programming-hero.com/api/categories";
 const allPlantUrl = "https://openapi.programming-hero.com/api/plants";
 const plantByCategoryUrl = (id) =>
     `https://openapi.programming-hero.com/api/category/${id}`;
-// const plantDetailsUrl = `https://openapi.programming-hero.com/api/plant/${id}`;
+const plantDetailsUrl = (id) =>
+    `https://openapi.programming-hero.com/api/plant/${id}`;
+
+let cart = [];
 
 const loadCategories = () => {
     fetch(categoryUrl)
@@ -119,7 +122,8 @@ const displayPlants = (plants) => {
                     </div>
 
                     <button
-                        class="bg-[#15813c] text-white rounded-3xl border-none hover:bg-white hover:text-black cursor-pointer w-full p-2"
+                        onclick="handleAddToCart(${plant.id})"
+                        class="bg-[#15813c] text-white rounded-3xl border-none cursor-pointer w-full p-2 hover:bg-[#0f6b30] transition-colors duration-200"
                     >
                         Add To Cart
                     </button>
@@ -131,6 +135,86 @@ const displayPlants = (plants) => {
     });
 
     plantCards.append(cardContainer);
+};
+
+const handleAddToCart = (id) => {
+    fetch(plantDetailsUrl(id))
+        .then((res) => res.json())
+        .then((data) => {
+            addToCart(data.plants);
+        });
+};
+
+const addToCart = (plant) => {
+    const existingItem = cart.find(item => item.id === plant.id);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            ...plant,
+            quantity: 1
+        });
+    }
+
+    renderCart();
+};
+
+const renderCart = () => {
+    const cartContainer = document.querySelector(".cart .space-y-4");
+
+    cartContainer.innerHTML = `
+        <h2 class="font-bold text-xl">Your Cart</h2>
+    `;
+
+    let total = 0;
+
+cart.forEach((item, index) => {
+    total += item.price * item.quantity;
+
+    const div = document.createElement("div");
+
+    div.className =
+        "flex items-center justify-between rounded-2xl bg-[#f1fcf4] px-5 py-4";
+
+    div.innerHTML = `
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">
+                ${item.name}
+            </h3>
+
+            <p class="mt-2 text-lg text-gray-500">
+                ৳${item.price} × ${item.quantity}
+            </p>
+        </div>
+
+        <button onclick="removeFromCart(${item.id})"
+            class="text-3xl text-gray-500 hover:text-red-500">
+            ×
+        </button>
+    `;
+
+    cartContainer.appendChild(div);
+});
+
+    // Total section
+    const totalDiv = document.createElement("div");
+
+    totalDiv.innerHTML = `
+        <div class="border-t border-gray-300"></div>
+
+        <div class="flex items-center justify-between mt-4">
+            <h2 class="text-lg font-semibold text-gray-800">Total:</h2>
+            <p class="text-lg font-semibold text-gray-800">৳${total}</p>
+        </div>
+    `;
+
+    cartContainer.appendChild(totalDiv);
+};
+
+const removeFromCart = (id) => {
+    cart = cart.filter(item => item.id !== id);
+    renderCart();
 };
 
 loadCategories();
