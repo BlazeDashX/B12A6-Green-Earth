@@ -7,10 +7,26 @@ const plantDetailsUrl = (id) =>
 
 let cart = [];
 
+const showSpinner = (status) => {
+    const spinner = document.getElementById("spinner");
+    const plantCards = document.getElementById("plant-cards");
+
+    if (status) {
+        spinner.classList.remove("hidden");
+    } else {
+        spinner.classList.add("hidden");
+    }
+};
+
+
 const loadCategories = () => {
+    showSpinner(true);
     fetch(categoryUrl)
         .then((res) => res.json())
-        .then((data) => displayCategories(data.categories));
+        .then((data) => displayCategories(data.categories))
+        .finally(()=>{
+            showSpinner(false);
+        });
 };
 
 const displayCategories = (categories) => {
@@ -65,15 +81,19 @@ const setActive = (clickedBtn) => {
 };
 
 const loadPlants = () => {
+    showSpinner(true);
     fetch(allPlantUrl)
         .then((res) => res.json())
-        .then((data) => displayPlants(data.plants));
+        .then((data) => displayPlants(data.plants))
+        .finally(() => showSpinner(false));
 };
 
 const loadPlantsByCategory = (id) => {
+    showSpinner(true);
     fetch(plantByCategoryUrl(id))
         .then((res) => res.json())
-        .then((data) => displayPlants(data.plants));
+        .then((data) => displayPlants(data.plants))
+        .finally(() => showSpinner(false));
 };
 
 const displayPlants = (plants) => {
